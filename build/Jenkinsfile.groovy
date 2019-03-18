@@ -8,7 +8,7 @@ def call(){
             string (name: 'JENKINS_AGENT', defaultValue: params.JENKINS_AGENT ?: '', description: 'Jenkins agent to use')
         }
         agent {
-            label ${JENKINS_AGENT}
+            label "${JENKINS_AGENT}"
         }
         stages {
             stage('SETUP') {
