@@ -23,10 +23,8 @@ def call(){
             }
             stage('TEMP1') {
                 steps {
-                    script {
-                        sh "echo test1"
-                        sh "echo ${DOCKER_CRED}"
-                    }
+                    sh "echo test1"
+                    sh "echo ${DOCKER_CRED}"
                 }
             }
             stage('TEMP3') {
