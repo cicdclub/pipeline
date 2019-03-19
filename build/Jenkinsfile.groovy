@@ -25,7 +25,7 @@ def call(){
                 steps {
                     script {
                         sh "echo test1"
-                        sh "echo ${env.DOCKER_CRED}"
+                        sh "echo ${DOCKER_CRED}"
                     }
                 }
             }
