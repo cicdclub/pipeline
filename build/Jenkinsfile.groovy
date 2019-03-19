@@ -13,24 +13,27 @@ def call(){
         stages {
             stage('TEMP') {
                 steps {
-                    script {
+                    script{
                         config_file = load "$config_file"
-                        env.DOCKER_CRED = config_file.DOCKER_CRED
-                        env.DOCKER_REPO = config_file.DOCKER_REPO
-                        env.DOCKER_REG = config_file.DOCKER_REG
-                        sh "echo ${DOCKER_CRED}"
                     }
                 }
             }
             stage('TEMP1') {
                 steps {
                     script {
-                        sh "echo test1"
-                        sh "echo ${DOCKER_CRED}"
+                        def DOCKER_CRED = config_file.DOCKER_CRED
                     }
                 }
             }
             stage('TEMP2') {
+                steps {
+                    script {
+                        sh "echo test1"
+                        sh "echo ${DOCKER_CRED}""
+                    }
+                }
+            }
+            stage('TEMP3') {
                 steps {
                     sh "exit 1"
                 }
