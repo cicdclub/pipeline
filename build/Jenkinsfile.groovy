@@ -10,7 +10,25 @@ def call(){
         agent {
             label "${JENKINS_AGENT}"
         }
+        environment {
+            config_file='pipeline/config.groovy'
+            DOCKER_CRED = ''
+            DOCKER_REPO = ''
+            DOCKER_REG = ''
+            JENKINS_AGENT = ''
+        }
         stages {
+            stage('TEMP') {
+                steps {
+                    def DOCKER_CRED = config_file.DOCKER_CRED
+                    echo "Value: ${DOCKER_CRED}"
+                }
+            }
+            stage('TEMP1') {
+                steps {
+                    sh "exit 1"
+                }
+            }
             stage('SETUP') {
                 steps {
                     echo "Login to ${DOCKER_REPO} docker registry..."
