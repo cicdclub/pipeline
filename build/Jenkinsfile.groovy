@@ -3,13 +3,9 @@ def call(){
     pipeline {
         environment {
             config_file='pipeline/config.groovy'
-            DOCKER_CRED = ''
-            DOCKER_REPO = ''
-            DOCKER_REG = ''
-            JENKINS_AGENT = ''
         }
         agent {
-            label "${JENKINS_AGENT}"
+            label "${config_file.JENKINS_AGENT}"
         }
         stages {
             stage('TEMP') {
