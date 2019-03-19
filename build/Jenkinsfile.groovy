@@ -20,6 +20,14 @@ def call(){
                     }
                 }
             }
+            stage('TEMP1') {
+                steps {
+                    script{
+                        def DOCKER_REPO = config_file.DOCKER_REPO
+                        sh "echo ${DOCKER_REPO}"
+                    }
+                }
+            }
             stage('TEMP3') {
                 steps {
                     sh "exit 1"
