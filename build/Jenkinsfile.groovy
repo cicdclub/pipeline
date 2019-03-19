@@ -20,8 +20,11 @@ def call(){
         stages {
             stage('TEMP') {
                 steps {
-                    def DOCKER_CRED = config_file.DOCKER_CRED
-                    echo "Value: ${DOCKER_CRED}"
+                    script {
+                        config_file = load "$config_file"
+                        def DOCKER_CRED = config_file.DOCKER_CRED
+                        echo "Value: ${DOCKER_CRED}"
+                    }
                 }
             }
             stage('TEMP1') {
