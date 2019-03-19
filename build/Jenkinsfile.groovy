@@ -21,14 +21,16 @@ def call(){
             stage('TEMP1') {
                 steps {
                     script {
+                        sh "echo test1"
                         def DOCKER_CRED = config_file.DOCKER_CRED
+                        sh "echo ${DOCKER_CRED}"
                     }
                 }
             }
             stage('TEMP2') {
                 steps {
                     script {
-                        sh "echo test1"
+                        sh "echo test2"
                         sh "echo ${DOCKER_CRED}"
                     }
                 }
