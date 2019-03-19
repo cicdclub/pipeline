@@ -31,7 +31,7 @@ def call(){
             stage('TEMP2') {
                 steps {
                     sh "echo test2"
-                    sh "echo ${DOCKER_REPO}"
+                    sh "echo ${config_file.DOCKER_REPO}"
                 }
             }
             stage('TEMP3') {
