@@ -15,6 +15,9 @@ def call(){
                 steps {
                     script{
                         config_file = load "$config_file"
+                        env.DOCKER_CRED = config_file.DOCKER_CRED
+                        env.DOCKER_REPO = config_file.DOCKER_REPO
+                        env.DOCKER_REG = config_file.DOCKER_REG
                     }
                 }
             }
@@ -22,16 +25,7 @@ def call(){
                 steps {
                     script {
                         sh "echo test1"
-                        def DOCKER_CRED = config_file.DOCKER_CRED
-                        sh "echo ${DOCKER_CRED}"
-                    }
-                }
-            }
-            stage('TEMP2') {
-                steps {
-                    script {
-                        sh "echo test2"
-                        sh "echo ${DOCKER_CRED}"
+                        sh "echo ${env.DOCKER_CRED}"
                     }
                 }
             }
