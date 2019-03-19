@@ -3,6 +3,9 @@ def call(){
     pipeline {
         environment {
             config_file='pipeline/config.groovy'
+            DOCKER_CRED = ''
+            DOCKER_REPO = ''
+            DOCKER_REG = ''
         }
         agent {
             label "master"
@@ -14,9 +17,7 @@ def call(){
                         config_file = load "$config_file"
                         def DOCKER_CRED = config_file.DOCKER_CRED
                         def DOCKER_REPO = config_file.DOCKER_REPO
-                        echo "DOCKER_CRED: ${DOCKER_CRED}"
-                        echo "DOCKER_REPO: ${DOCKER_REPO}"
-                        echo "DOCKER_REG: ${config_file.DOCKER_REG}"
+                        def DOCKER_REG = config_file.DOCKER_REG
                     }
                 }
             }
@@ -24,7 +25,7 @@ def call(){
                 steps {
                     echo "DOCKER_CRED: ${DOCKER_CRED}"
                     echo "DOCKER_REPO: ${DOCKER_REPO}"
-                    echo "DOCKER_REG: ${config_file.DOCKER_REG}"
+                    echo "DOCKER_REG: ${DOCKER_REG}"
                     sh "exit 1"
                 }
             }
