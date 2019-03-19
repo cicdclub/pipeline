@@ -28,6 +28,12 @@ def call(){
                     }
                 }
             }
+            stage('TEMP2') {
+                steps {
+                    sh "test2"
+                    sh "echo ${DOCKER_REPO}"
+                }
+            }
             stage('TEMP3') {
                 steps {
                     sh "exit 1"
