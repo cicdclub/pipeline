@@ -23,7 +23,10 @@ def call(){
                     script {
                         config_file = load "$config_file"
                         def DOCKER_CRED = config_file.DOCKER_CRED
-                        echo "Value: ${DOCKER_CRED}"
+                        echo "DOCKER_CRED: ${DOCKER_CRED}"
+                        echo "DOCKER_REPO: ${DOCKER_REPO}"
+                        echo "DOCKER_REG: ${DOCKER_REG}"
+                        echo "JENKINS_AGENT: ${JENKINS_AGENT}"
                     }
                 }
             }
