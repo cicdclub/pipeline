@@ -3,9 +3,6 @@ def call(){
     pipeline {
         environment {
             config_file='pipeline/config.groovy'
-            DOCKER_CRED = ''
-            DOCKER_REPO = ''
-            DOCKER_REG = ''
         }
         agent {
             label "master"
