@@ -22,6 +22,9 @@ def call(){
             }
             stage('TEMP1') {
                 steps {
+                    echo "DOCKER_CRED: ${DOCKER_CRED}"
+                    echo "DOCKER_REPO: ${DOCKER_REPO}"
+                    echo "DOCKER_REG: ${config_file.DOCKER_REG}"
                     sh "exit 1"
                 }
             }
