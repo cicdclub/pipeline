@@ -8,12 +8,6 @@ def call(){
             label "docker"
         }
         stages {
-            stage('TEST') {
-                steps {
-                    sh "set"
-                    sh "exit 1"
-                }
-            }
             stage('SETUP') {
                 steps {
                     script{
@@ -32,14 +26,14 @@ def call(){
             stage('BUILD') {
                 steps {
                     echo "Building ${config_file.DOCKER_REPO} docker image..."
-                    sh "sudo docker build -t ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:${BUILD_ID} ."
+                    sh "sudo docker build -t ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:${BUILD_NUMBER} ."
                 }
             }
             stage('PUSH') {
                 steps {
                     echo "Pushing ${config_file.DOCKER_REPO} docker image..."
-                    sh "sudo docker push ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:${BUILD_ID}"
-                    sh "sudo docker tag ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:${BUILD_ID} ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:latest"
+                    sh "sudo docker push ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:${BUILD_NUMBER}"
+                    sh "sudo docker tag ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:${BUILD_NUMBER} ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:latest"
                     sh "sudo docker push ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:latest"
                 }
             }
