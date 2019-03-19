@@ -1,21 +1,15 @@
 #!/bin/groovy
 def call(){
     pipeline {
-        parameters {
-            string (name: 'DOCKER_CRED', defaultValue: params.DOCKER_CRED ?: '', description: 'credentialsId for Docker registry in Jenkins')
-            string (name: 'DOCKER_REPO', defaultValue: params.DOCKER_REPO ?: '', description: 'Docker repository')
-            string (name: 'DOCKER_REG', defaultValue: params.DOCKER_REG ?: '', description: 'Docker registry')
-            string (name: 'JENKINS_AGENT', defaultValue: params.JENKINS_AGENT ?: '', description: 'Jenkins agent to use')
-        }
-        agent {
-            label "${JENKINS_AGENT}"
-        }
         environment {
             config_file='pipeline/config.groovy'
             DOCKER_CRED = ''
             DOCKER_REPO = ''
             DOCKER_REG = ''
             JENKINS_AGENT = ''
+        }
+        agent {
+            label "${JENKINS_AGENT}"
         }
         stages {
             stage('TEMP') {
