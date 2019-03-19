@@ -30,7 +30,7 @@ def call(){
             }
             stage('TEMP2') {
                 steps {
-                    sh "test2"
+                    sh "echo test2"
                     sh "echo ${DOCKER_REPO}"
                 }
             }
