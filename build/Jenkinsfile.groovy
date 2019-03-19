@@ -11,15 +11,6 @@ def call(){
             label "master"
         }
         stages {
-#            stage('TEMP') {
-#                steps {
-#                    script{
-#                        config_file = load "$config_file"
-#                        def DOCKER_CRED = config_file.DOCKER_CRED
-#                        sh "echo ${DOCKER_CRED}"
-#                    }
-#                }
-#            }
             stage('SETUP') {
                 steps {
                     script{
