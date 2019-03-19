@@ -18,13 +18,6 @@ def call(){
                         def DOCKER_CRED = config_file.DOCKER_CRED
                         def DOCKER_REPO = config_file.DOCKER_REPO
                         def DOCKER_REG = config_file.DOCKER_REG
-                    }
-                }
-            }
-            stage('TEMP1') {
-                steps {
-                    script {
-                        config_file = load "$config_file"
                         sh "echo $DOCKER_CRED"
                     }
                 }
