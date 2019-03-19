@@ -22,6 +22,13 @@ def call(){
                     }
                 }
             }
+            stage('TEMP1') {
+                steps {
+                    script {
+                        sh "echo $DOCKER_CRED"
+                    }
+                }
+            }
             stage('TEMP2') {
                 steps {
                     sh "exit 1"
