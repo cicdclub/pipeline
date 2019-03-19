@@ -29,7 +29,7 @@ def call(){
                 steps {
                     script {
                         sh "echo test1"
-                        sh "echo ${DOCKER_CRED}""
+                        sh "echo ${DOCKER_CRED}"
                     }
                 }
             }
