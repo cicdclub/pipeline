@@ -1,17 +1,11 @@
 #!/bin/groovy
 def call(){
     pipeline {
-        node {
-            load "pipeline/config.groovy"
-            echo "${COMPONENT}"
-            echo "${DOCKER_CRED}"
-            echo "${JENKINS_AGENT}"
-        }
         environment {
             config_file='pipeline/config.groovy'
         }
         agent {
-            label "${config_file.JENKINS_AGENT}"
+            label "master"
         }
         stages {
             stage('TEMP') {
@@ -21,11 +15,9 @@ def call(){
                         def DOCKER_CRED = config_file.DOCKER_CRED
                         def DOCKER_REPO = config_file.DOCKER_REPO
                         def DOCKER_REG = config_file.DOCKER_REG
-                        def JENKINS_AGENT = config_file.JENKINS_AGENT
                         echo "DOCKER_CRED: ${DOCKER_CRED}"
                         echo "DOCKER_REPO: ${DOCKER_REPO}"
                         echo "DOCKER_REG: ${DOCKER_REG}"
-                        echo "JENKINS_AGENT: ${JENKINS_AGENT}"
                     }
                 }
             }
