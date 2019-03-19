@@ -1,6 +1,12 @@
 #!/bin/groovy
 def call(){
     pipeline {
+        node {
+            load "pipeline/config.groovy"
+            echo "${COMPONENT}"
+            echo "${DOCKER_CRED}"
+            echo "${JENKINS_AGENT}"
+        }
         environment {
             config_file='pipeline/config.groovy'
         }
