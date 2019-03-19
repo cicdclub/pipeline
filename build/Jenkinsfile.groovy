@@ -2,7 +2,7 @@
 def call(){
     pipeline {
         environment {
-            config_file='pipeline/config.groovy'
+            config_file = load 'pipeline/config.groovy'
             DOCKER_CRED = ''
             DOCKER_REPO = ''
             DOCKER_REG = ''
@@ -13,9 +13,6 @@ def call(){
         stages {
             stage('SETUP') {
                 steps {
-                    script{
-                        config_file = load "$config_file"
-                    }
                     echo "Login to ${config_file.DOCKER_CRED} docker registry..."
                     withCredentials([[$class: 'UsernamePasswordMultiBinding',
                         credentialsId: "${config_file.DOCKER_CRED}",
@@ -49,10 +46,6 @@ def call(){
         }
         post {
             always {
-                cleanWs()
-                echo 'Cleaned Up Workspace'
-            }
-            success {
                 cleanWs()
                 echo 'Cleaned Up Workspace'
             }
