@@ -2,10 +2,11 @@
 def call(){
     pipeline {
         environment {
-            config_file='pipeline/config.groovy'
+            config_file='pipeline/config'
+            TAG = "${BRANCH}-${BUILD_NUMBER}"
         }
         agent {
-            label "master"
+            label "docker"
         }
         stages {
             stage('SETUP') {
@@ -26,14 +27,14 @@ def call(){
             stage('BUILD') {
                 steps {
                     echo "Building ${config_file.DOCKER_REPO} docker image..."
-                    sh "sudo docker build -t ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:${BUILD_NUMBER} ."
+                    sh "sudo docker build -t ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:${TAG} ."
                 }
             }
             stage('PUSH') {
                 steps {
                     echo "Pushing ${config_file.DOCKER_REPO} docker image..."
-                    sh "sudo docker push ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:${BUILD_NUMBER}"
-                    sh "sudo docker tag ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:${BUILD_NUMBER} ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:latest"
+                    sh "sudo docker push ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:${TAG}"
+                    sh "sudo docker tag ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:${TAG} ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:latest"
                     sh "sudo docker push ${config_file.DOCKER_REG}/${config_file.DOCKER_REPO}:latest"
                 }
             }
